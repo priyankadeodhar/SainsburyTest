@@ -42,7 +42,9 @@ public class ProcessProductDetailsImpl implements ProcessProductDetails{
 			
 			//Finally Create JSON output 
 			obj.convertToJson(productsList,totalObj);
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
+			System.out.println("Error in reading the test URL"  );
 			e.printStackTrace();
 		}
 		
