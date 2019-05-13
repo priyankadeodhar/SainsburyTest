@@ -21,6 +21,7 @@ import com.sainsbury.process.ProcessProductDetails;
 public class ProcessProductDetailsImpl implements ProcessProductDetails{
 	public static void main(String args[]){
 		List<Product> productsList =null;
+		Total totalObj =null;
 		try {
 			//The Test URL
 			String url ="https://jsainsburyplc.github.io/serverside-test/site/www.sainsburys.co.uk/webapp/wcs/stores/servlet/gb/groceries/berries-cherries-currants6039.html";
@@ -31,15 +32,16 @@ public class ProcessProductDetailsImpl implements ProcessProductDetails{
 			//Call the method to get the Products list from the test URL
 			productsList = obj.createProductsListFromURL(url);
 			
-			//Calculate Gross
-			BigDecimal gross = obj.calculateGrossUnitPrice(productsList);
-			
-			//Calculate Vat
-			BigDecimal vat = obj.calculateVat(gross);
-			
-			//Create object of Total which contains "gross" and "vat" variables
-			Total totalObj=new Total(gross,vat);
-			
+				if(null != productsList && !productsList.isEmpty()){
+					//Calculate Gross
+					BigDecimal gross = obj.calculateGrossUnitPrice(productsList);
+					
+					//Calculate Vat
+					BigDecimal vat = obj.calculateVat(gross);
+					
+					//Create object of Total which contains "gross" and "vat" variables
+					 totalObj=new Total(gross,vat);
+				}
 			//Finally Create JSON output 
 			obj.convertToJson(productsList,totalObj);
 		}
