@@ -44,7 +44,7 @@ public class ProcessProductDetailsImpl implements ProcessProductDetails{
 			obj.convertToJson(productsList,totalObj);
 		}
 		catch (IOException e) {
-			System.out.println("Error in reading the test URL"  );
+			System.out.println("Error in reading the HTML document"  );
 			e.printStackTrace();
 		}
 		
